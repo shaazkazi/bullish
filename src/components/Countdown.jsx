@@ -24,22 +24,18 @@ function Countdown() {
         // Market is closed; calculate next open time (Monday 9:15 AM)
         const nextOpen = new Date(nowIST);
         if (nowIST.getDay() === 6) {
-          // If Saturday, market opens on Monday
-          nextOpen.setDate(nowIST.getDate() + 2);
+          nextOpen.setDate(nowIST.getDate() + 2); // If Saturday, market opens on Monday
         } else if (nowIST.getDay() === 0) {
-          // If Sunday, market opens on Monday
-          nextOpen.setDate(nowIST.getDate() + 1);
+          nextOpen.setDate(nowIST.getDate() + 1); // If Sunday, market opens on Monday
         }
         nextOpen.setHours(9, 15, 0, 0);
 
         setMarketStatus("Market Closed");
         setTimeRemaining(`Opens in ${getTimeDifference(nowIST, nextOpen)}`);
       } else if (nowIST < openTime) {
-        // Market is closed but will open today
         setMarketStatus("Market Closed");
         setTimeRemaining(`Opens in ${getTimeDifference(nowIST, openTime)}`);
       } else if (nowIST >= openTime && nowIST <= closeTime) {
-        // Market is open
         setMarketStatus("Market Open");
         setTimeRemaining(`Closes in ${getTimeDifference(nowIST, closeTime)}`);
       }
@@ -58,9 +54,13 @@ function Countdown() {
   };
 
   return (
-    <div className="animate-fadeIn text-center mt-10">
-      <h1 className="text-2xl font-bold">{marketStatus}</h1>
-      <p className="text-lg mt-2">{timeRemaining}</p>
+    <div className="flex flex-col items-center justify-center min-h-[300px] p-6 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg shadow-xl text-white animate-fadeIn">
+      <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">
+        {marketStatus}
+      </h1>
+      <div className="text-lg md:text-2xl font-medium bg-white text-blue-600 px-6 py-3 rounded-full shadow-lg">
+        {timeRemaining}
+      </div>
     </div>
   );
 }
