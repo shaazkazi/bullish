@@ -42,10 +42,11 @@ function Countdown() {
 
   const getTimeDifference = (start, end) => {
     const diff = end - start;
-    const hours = Math.floor(diff / (1000 * 60 * 60));
-    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-    return `${hours}h ${minutes}m ${seconds}s`;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24)); // Calculate days
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)); // Calculate hours
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)); // Calculate minutes
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000); // Calculate seconds
+    return `${days}d ${String(hours).padStart(2, "0")}h ${String(minutes).padStart(2, "0")}m ${String(seconds).padStart(2, "0")}s`;
   };
 
   useEffect(() => {
