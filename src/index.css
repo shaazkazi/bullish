@@ -1,0 +1,33 @@
+/* Tailwind CSS Directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS */
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  /* Remove hardcoded colors; let Tailwind/DaisyUI handle themes */
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column; /* Ensure vertical stacking */
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: theme("colors.white"); /* Default light mode */
+  color: theme("colors.gray.900"); /* Adjust text color */
+}
+
+/* Ensure proper transitions for theme changes */
+[data-theme="dark"] {
+  background-color: theme("colors.gray.900");
+  color: theme("colors.white");
+}
